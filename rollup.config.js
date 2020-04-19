@@ -10,11 +10,13 @@ export default [
 			name: 'disguise',
 			file: pkg.browser,
 			format: 'umd',
-			exports: 'named',
 		},
 		plugins: [
 			resolve(), // so Rollup can find `dependency`
 			commonjs(), // so Rollup can convert `dependency` to an ES module
+			babel({
+				exclude: 'node_modules/**',
+			}),
 		],
 	},
 
