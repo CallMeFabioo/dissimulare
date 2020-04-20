@@ -1,6 +1,6 @@
 {
-  "name": "disguise",
-  "version": "0.0.0",
+  "name": "dissimulare",
+  "version": "0.0.4",
   "description": "Simple mask library",
   "source": "src/index.js",
   "main": "dist/index.cjs.js",
@@ -14,21 +14,25 @@
     "url": "https://github.com/callmefabioo"
   },
   "repository": {
-		"type": "git",
-		"url": "https://github.com/callmefabioo/disguise"
-	},
+    "type": "git",
+    "url": "https://github.com/callmefabioo/dissimulare"
+  },
   "files": [
     "dist",
     "package.json",
     "README.md"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --compact",
     "dev": "rollup -c -w",
-    "test": "jest --silent",
+    "test": "jest --verbose false --silent",
     "test:dev": "jest --watch",
     "pretest": "npm run build",
-    "prerelease": "npm run test && npm run build"
+    "prerelease": "npm run test && npm run build",
+    "version:patch": "release patch",
+    "version:minor": "release minor",
+    "version:major": "release major",
+    "version:canary": "release pre canary"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -44,8 +48,10 @@
     "jest": "^25.3.0",
     "lint-staged": "^10.1.5",
     "prettier": "^2.0.4",
+    "release": "^6.1.0",
     "rollup": "^2.6.1",
-    "rollup-plugin-babel": "^4.4.0"
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0"
   },
   "eslintConfig": {
     "root": true,

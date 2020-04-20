@@ -1,5 +1,8 @@
-import resolve from '@rollup/plugin-node-resolve';
+import babel from 'rollup-plugin-babel';
+import { terser } from 'rollup-plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+
 import pkg from './package.json';
 
 export default [
@@ -7,26 +10,27 @@ export default [
 	{
 		input: 'src/index.js',
 		output: {
-			name: 'disguise',
+			name: 'dissimulare',
 			file: pkg.browser,
 			format: 'umd',
 		},
 		plugins: [
-			resolve(), // so Rollup can find `dependency`
-			commonjs(), // so Rollup can convert `dependency` to an ES module
+			resolve(),
+			commonjs(),
 			babel({
 				exclude: 'node_modules/**',
 			}),
+			terser(),
 		],
 	},
 
 	// CommonJS (for Node) and ES module (for bundlers) build.
 	{
 		input: 'src/index.js',
-		// external: ['dependency'],
 		output: [
-			{ name: 'disguise', format: 'cjs', file: pkg.main },
-			{ name: 'disguise', format: 'es', file: pkg.module },
+			{ name: 'dissimulare', format: 'cjs', file: pkg.main },
+			{ name: 'dissimulare', format: 'es', file: pkg.module },
 		],
+		plugins: [terser()],
 	},
 ];
