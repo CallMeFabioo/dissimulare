@@ -1,3 +1,5 @@
+import memoize from 'memoize-one';
+
 const mask = (value, pattern) => {
 	if (!value) throw new TypeError('Disguise: A value must be passed.');
 
@@ -8,16 +10,25 @@ const mask = (value, pattern) => {
 		STRING: 'S',
 	};
 
-	const isNumber = (value, mask) =>
-		mask === TOKENS.NUMBER && value.match(/\d/g);
-	const isLetter = (value, mask) =>
-		mask === TOKENS.STRING && value.match(/\w/g);
+	const onlyNumbers = memoize((s) => s.replace(/\W/g, ''));
+	const isNumber = memoize((v, m) => m === TOKENS.NUMBER && v.match(/\d/g));
+	const isLetter = memoize((v, m) => m === TOKENS.STRING && v.match(/\w/g));
 
 	let output = [];
 	let i = 0;
 	let j = 0;
 
 	const inputs = value.toString().replace(/\W/g, '');
+
+	if (Array.isArray(pattern)) {
+		pattern = pattern.find((pattern) => {
+			const patternLength = onlyNumbers(pattern).length;
+			const inputsLength = onlyNumbers(inputs).length;
+
+			return patternLength === inputsLength;
+		});
+	}
+
 	const patternValues = pattern.toString();
 
 	const inputsLength = inputs.length;

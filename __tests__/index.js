@@ -35,3 +35,9 @@ it.each([
 		expect(mask(value, pattern)).toBe(expected);
 	}
 );
+
+it('should choose best pattern based on values length', () => {
+	const patterns = ['(99) 99999-9999', '(99) 9999-9999'];
+
+	expect(mask('1162257573', patterns)).toBe('(11) 6225-7573');
+});
