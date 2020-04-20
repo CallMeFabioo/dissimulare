@@ -9,7 +9,7 @@ module.exports = {
 	bail: 1,
 
 	// Respect "browser" field in package.json when resolving modules
-	browser: true,
+	// browser: true,
 
 	// The directory where Jest should store its cached dependency information
 	// cacheDirectory: "/tmp/jest_4fv9xr",
