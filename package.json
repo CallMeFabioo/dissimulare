@@ -1,6 +1,6 @@
 {
   "name": "dissimulare",
-  "version": "0.1.0-canary.0",
+  "version": "0.1.0",
   "description": "Simple mask library",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
