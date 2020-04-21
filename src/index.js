@@ -1,7 +1,11 @@
 import memoize from 'memoize-one';
 
-const mask = (value, pattern) => {
-	if (!value) throw new TypeError('Disguise: A value must be passed.');
+export const mask = (value, pattern) => {
+	if (!value) {
+		console.error('Disguise: A value must be passed.');
+
+		return;
+	}
 
 	if (!pattern) return value;
 
@@ -62,5 +66,3 @@ const mask = (value, pattern) => {
 
 	return output.join('');
 };
-
-export { mask };

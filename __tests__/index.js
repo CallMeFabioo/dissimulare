@@ -4,9 +4,12 @@ it('should return a function', () => {
 	expect(mask).toBeInstanceOf(Function);
 });
 
-it('should throw an error if value is not provided', () => {
-	expect(() => mask()).toThrow('Disguise: A value must be passed.');
-	expect(() => mask()).toThrow(TypeError);
+it('should console.error if value is not provided', () => {
+	console.error = jest.fn();
+
+	mask(null, '(99)');
+
+	expect(console.error).toBeCalledWith('Disguise: A value must be passed.');
 });
 
 it('should return the value when pattern is not provided', () => {
