@@ -34,7 +34,7 @@
     "build:clean": "rimraf dist",
     "size": "npm run build && size-limit",
     "dev": "npm run build:clean && rollup -c -w --environment NODE_ENV:development",
-    "test": "jest --verbose false --silent",
+    "test": "jest",
     "test:dev": "jest --watch",
     "pretest": "npm run build:clean && npm run build",
     "prerelease": "npm run build:clean && npm run build && npm run test",
