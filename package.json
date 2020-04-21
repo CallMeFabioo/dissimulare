@@ -30,14 +30,14 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npm run build:clean && rollup -c --environment NODE_ENV:production",
+    "build": "npm run build:clean&& rollup -c --environment NODE_ENV:production && npm run size",
     "build:clean": "rimraf dist",
-    "size": "npm run build && size-limit",
+    "size": "size-limit",
     "dev": "npm run build:clean && rollup -c -w --environment NODE_ENV:development",
     "test": "jest",
     "test:dev": "jest --watch",
-    "pretest": "npm run build:clean && npm run build",
-    "prerelease": "npm run build:clean && npm run build && npm run test",
+    "pretest": "npm run build",
+    "prerelease": "npm run build && npm run test",
     "version:patch": "release patch",
     "version:minor": "release minor",
     "version:major": "release major",
@@ -71,8 +71,8 @@
   },
   "size-limit": [
     {
-      "limit": "700 B",
-      "path": "dist/index.*.js"
+      "limit": "650 B",
+      "path": "dist/**/index.js"
     }
   ],
   "eslintConfig": {
