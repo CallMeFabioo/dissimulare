@@ -6,21 +6,13 @@ import pkg from './package.json';
 export default {
 	input: 'src/index.js',
 	output: [
+		{ file: pkg.main, format: 'cjs' },
+		{ file: pkg.module, format: 'esm' },
 		{
 			name: pkg.name,
 			file: pkg.browser,
 			format: 'umd',
 			plugins: [terser()],
-		},
-		{
-			name: pkg.name,
-			format: 'cjs',
-			file: pkg.main,
-		},
-		{
-			name: pkg.name,
-			format: 'es',
-			file: pkg.module,
 		},
 	],
 	plugins: [resolve()],
