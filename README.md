@@ -2,7 +2,7 @@
   <img src="logo.png" alt="Dissimulate">
 </h1>
 
-![Release](https://img.shields.io/github/v/release/CallMeFabioo/dissimulare?include_prereleases)
+![Current version](https://img.shields.io/npm/v/dissimulare)
 ![CI](https://github.com/CallMeFabioo/dissimulare/workflows/Dissimulare%20CI/badge.svg)
 ![License](https://img.shields.io/npm/l/dissimulare)
 
