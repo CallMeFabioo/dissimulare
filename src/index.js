@@ -14,54 +14,54 @@ export const mask = (value, pattern) => {
 		STRING: 'S',
 	};
 
-	const onlyNumbers = memoize((s) => s.replace(/\W/g, ''));
+	const onlyAlphaNums = memoize((s) => s.toString().replace(/\W/g, ''));
 	const isNumber = memoize((v, m) => m === TOKENS.NUMBER && v.match(/\d/g));
 	const isLetter = memoize((v, m) => m === TOKENS.STRING && v.match(/\w/g));
+
+	const inputs = onlyAlphaNums(value);
+	const inputsLength = inputs.length;
+
+	if (Array.isArray(pattern)) {
+		pattern = pattern.find(
+			(pattern) => onlyAlphaNums(pattern).length === inputsLength
+		);
+	}
+
+	const patternValues = pattern.toString();
+	const patternLength = patternValues.length;
 
 	let output = [];
 	let i = 0;
 	let j = 0;
 
-	const inputs = value.toString().replace(/\W/g, '');
-
-	if (Array.isArray(pattern)) {
-		pattern = pattern.find((pattern) => {
-			const patternLength = onlyNumbers(pattern).length;
-			const inputsLength = onlyNumbers(inputs).length;
-
-			return patternLength === inputsLength;
-		});
-	}
-
-	const patternValues = pattern.toString();
-
-	const inputsLength = inputs.length;
-	const patternLength = patternValues.length;
-
-	for (i; i < patternLength; i++) {
+	for (; i < patternLength; i++) {
 		const char = inputs.charAt(j);
-		const mask = patternValues.charAt(i);
+		const maskChar = patternValues.charAt(i);
 
-		if (mask.match(/\W/g)) {
-			if (j >= inputsLength) {
-				if (!char && i >= inputsLength && !!patternValues.charAt(i + 1)) {
-					break;
-				}
-			}
+		if (isNumber(char, maskChar) || isLetter(char, maskChar)) {
+			output.push(char);
+			j++;
 
-			output.push(mask);
-		} else {
-			if (isNumber(char, mask) || isLetter(char, mask)) {
-				output.push(char);
-				j++;
-			} else {
-				if (!char || [TOKENS.NUMBER, TOKENS.STRING].includes(mask)) {
-					return output.join('');
-				}
-
-				output.push(mask);
-			}
+			continue;
 		}
+
+		if (maskChar.match(/\W/g)) {
+			if (!char && i >= inputsLength && !!patternValues.charAt(i + 1)) {
+				break;
+			}
+
+			output.push(maskChar);
+
+			continue;
+		}
+
+		// ending of input value, doesn't need to
+		// continue iterate over the pattern
+		if (!char || [TOKENS.NUMBER, TOKENS.STRING].includes(mask)) {
+			return output.join('');
+		}
+
+		output.push(maskChar);
 	}
 
 	return output.join('');
