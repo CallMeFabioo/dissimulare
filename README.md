@@ -3,7 +3,7 @@
 </h1>
 
 ![Release](https://img.shields.io/github/v/release/CallMeFabioo/dissimulare?include_prereleases)
-![CI](https://github.com/CallMeFabioo/disguise/workflows/Disguise%20CI/badge.svg)
+![CI](https://github.com/CallMeFabioo/dissimulare/workflows/Dissimulare%20CI/badge.svg)
 ![License](https://img.shields.io/npm/l/dissimulare)
 
 > Simple mask library
