@@ -1,6 +1,6 @@
 {
   "name": "dissimulare",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Simple mask library",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
@@ -14,7 +14,14 @@
   },
   "sideEffects": false,
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "mask",
+    "input mask",
+    "text mask",
+    "input formatting",
+    "string formatting",
+    "text formatting"
+  ],
   "author": {
     "email": "callmefabioo@gmail.com",
     "name": "Fábio de Carvalho",
