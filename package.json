@@ -1,6 +1,6 @@
 {
   "name": "dissimulare",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Simple mask library",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
