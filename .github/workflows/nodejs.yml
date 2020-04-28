@@ -24,8 +24,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install dependencies
     - run: npm ci
-    - run: npm run build --if-present
+    - name: Run tests
     - run: npm test
+    - name: build package
+    - run: npm run build --if-present
       env:
         CI: true

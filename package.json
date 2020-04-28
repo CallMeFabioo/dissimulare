@@ -37,7 +37,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npm run build:clean&& rollup -c --environment NODE_ENV:production && npm run size",
+    "build": "npm run build:clean && rollup -c --environment NODE_ENV:production && npm run size",
     "build:clean": "rimraf dist",
     "size": "size-limit",
     "dev": "npm run build:clean && rollup -c -w --environment NODE_ENV:development",
