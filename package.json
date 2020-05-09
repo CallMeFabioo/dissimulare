@@ -32,9 +32,7 @@
     "url": "https://github.com/callmefabioo/dissimulare"
   },
   "files": [
-    "dist",
-    "package.json",
-    "README.md"
+    "dist"
   ],
   "scripts": {
     "build": "npm run build:clean && rollup -c --environment NODE_ENV:production && npm run size",
