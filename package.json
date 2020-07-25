@@ -5,7 +5,7 @@
   "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
-  "unpkg": "dist/umd/index.umd.js",
+  "unpkg": "dist/index.umd.js",
   "sideEffects": false,
   "license": "MIT",
   "keywords": [
