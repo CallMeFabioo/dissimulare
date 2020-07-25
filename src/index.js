@@ -2,7 +2,7 @@ import memoize from 'memoize-one';
 
 export const mask = (value, pattern) => {
 	if (!value) {
-		console.error('Disguise: A value must be passed.');
+		console.error('Dissimulare: A value must be passed.');
 
 		return;
 	}
