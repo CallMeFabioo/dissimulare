@@ -69,34 +69,6 @@
       "path": "dist/**/index.js"
     }
   ],
-  "eslintConfig": {
-    "root": true,
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaVersion": 2018
-    },
-    "env": {
-      "browser": true,
-      "es6": true,
-      "node": true,
-      "commonjs": true
-    },
-    "extends": [
-      "plugin:prettier/recommended"
-    ]
-  },
-  "prettier": {
-    "printWidth": 80,
-    "arrowParens": "always",
-    "quoteProps": "as-needed",
-    "bracketSpacing": true,
-    "semi": true,
-    "useTabs": true,
-    "tabWidth": 2,
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "endOfLine": "lf"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -107,18 +79,6 @@
       "eslint --fix",
       "prettier --write",
       "jest --findRelatedTests --coverage"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
     ]
   }
 }

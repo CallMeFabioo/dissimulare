@@ -1,0 +1,14 @@
+{
+	"root": true,
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 2018
+	},
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true,
+		"commonjs": true
+	},
+	"extends": ["plugin:prettier/recommended"]
+}
