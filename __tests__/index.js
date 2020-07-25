@@ -9,7 +9,7 @@ it('should console.error if value is not provided', () => {
 
 	mask(null, '(99)');
 
-	expect(console.error).toBeCalledWith('Disguise: A value must be passed.');
+	expect(console.error).toBeCalledWith('Dissimulare: A value must be passed.');
 });
 
 it('should return the value when pattern is not provided', () => {
