@@ -33,7 +33,7 @@
     "build:clean": "rimraf dist",
     "size": "size-limit",
     "dev": "microbundle watch",
-    "test": "jest",
+    "test": "jest --verbose false --silent --maxWorkers=2 --no-cache",
     "test:dev": "jest --watch",
     "pretest": "npm run build",
     "prerelease": "npm run build && npm run test",
