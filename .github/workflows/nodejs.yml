@@ -19,27 +19,27 @@ jobs:
         node-version: [10.x, 12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    # See https://github.com/actions/cache
-    - name: Cache node_modules
-      id: cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
+      # See https://github.com/actions/cache
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-    - name: Install dependencies and build
-    - run: npm ci
-    - run: npm run build --if-present
+      - name: Install dependencies and build
+      - run: npm ci
+      - run: npm run build --if-present
 
-    - name: Run tests
-    - run: npm test
-      env:
-        CI: true
+      - name: Run tests
+      - run: npm test
+        env:
+          CI: true
