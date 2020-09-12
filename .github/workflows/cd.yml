@@ -1,0 +1,60 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Production Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to deploy
+        default: v0.3.0
+        required: true
+
+jobs:
+  build:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 12.x ]
+    steps:
+      - name: Setup
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Restore the previous NPM modules and Cypress binary archives.
+      # Any updated archives will be saved automatically after the entire
+      # workflow successfully finishes.
+      # See https://github.com/actions/cache
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        id: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build --if-present
+
+      - name: Tests
+        run: npm run test
+
+      - name: Deploy
+        run: echo ${{ github.event.inputs.version }}
+
+
